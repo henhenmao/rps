@@ -49,6 +49,7 @@ function playGame() {
         console.log(`You: ${humanScore} - Computer: ${computerScore}`);
         console.log();
     }
+    console.log(`FINAL SCORE\nHUMAN: ${humanScore}\nCOMPUTER: ${computerScore}`);
 }
 
 playGame();
