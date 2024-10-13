@@ -1,3 +1,4 @@
+
 function getComputerChoice() {
     let rand = Math.floor(Math.random() * 3);
     if (rand == 0) {
@@ -21,35 +22,45 @@ function playRound(humanChoice, computerChoice) {
     if ((humanChoice == "rock" && computerChoice == "scissors") ||
         (humanChoice == "paper" && computerChoice == "rock") ||
         (humanChoice == "scissors" && computerChoice == "paper")) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!!`);
-        return 1;
+        changeScore(1);
     } else if ((humanChoice == "rock" && computerChoice == "paper") ||
         (humanChoice == "paper" && computerChoice == "scissors") ||
         (humanChoice == "scissors" && computerChoice == "rock")) {
-        console.log(`You lost! ${computerChoice} beats ${humanChoice}!!`);
-        return -1
-    } else {
-        console.log(`You tied! ${humanChoice} ties ${computerChoice}`);
-        return 0;
+        changeScore(-1);
     }
 }
 
-
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    for (let i = 1; i <= 5; i += 1) {
-        console.log(`Round ${i}!!!`);
-        game = playRound(getHumanChoice().toLowerCase(), getComputerChoice());
-        if (game == 1) {
-            humanScore += 1;
-        } else if (game == -1) {
-            computerScore += 1;
-        }
-        console.log(`You: ${humanScore} - Computer: ${computerScore}`);
-        console.log();
+function changeScore(result) {
+    if (result == 1) {
+        humanScore += 1;
+    } else if (result == -1) {
+        computerScore += 1;
     }
-    console.log(`FINAL SCORE\nHUMAN: ${humanScore}\nCOMPUTER: ${computerScore}`);
+
+    if (humanScore == 5) {
+        winner.textContent = "Human has won the game!!";
+    } else if (computerScore == 5) {
+        winner.textContent = "Computer has won the game!!";
+    }
+    score.textContent = `Human: ${humanScore} - Computer: ${computerScore}`;
 }
 
-playGame();
+
+let humanScore = 0;
+let computerScore = 0;
+
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const score = document.getElementById("score");
+const winner = document.getElementById("winner");
+
+rock.addEventListener("click", () => {
+    playRound("rock", getComputerChoice());
+});
+paper.addEventListener("click", () => {
+    playRound("paper", getComputerChoice());
+});
+scissors.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice());
+});

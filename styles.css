@@ -1,0 +1,23 @@
+#container {
+    display: flex;
+    height: 300;
+    justify-content: center;
+    gap: 24px;
+    margin: 50px 0;
+
+}
+
+.button {
+    width:100px;
+    height: 75px;
+}
+
+#score {
+    text-align: center;
+    font-size: 20px;
+}
+
+#winner {
+    text-align: center;
+    font-size: 20px;
+}
